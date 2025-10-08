@@ -1,8 +1,8 @@
-# Dwilsonhaircuts Website - Complete Setup Guide
+# Open Heaven Website - Complete Setup Guide
 
 ## 📋 Project Overview
 
-A complete, professional website for Dwilsonhaircuts barbershop featuring:
+A complete, professional website for Open Heaven barbershop featuring:
 - Modern, responsive design with smooth animations
 - Online booking system with Firebase integration
 - Payment receipt upload functionality
@@ -13,7 +13,7 @@ A complete, professional website for Dwilsonhaircuts barbershop featuring:
 ## 🗂️ File Structure
 
 ```
-dwilsonhaircuts/
+Open Heaven/
 ├── index.html          # Homepage
 ├── services.html       # Services page
 ├── products.html       # Products page
@@ -28,7 +28,7 @@ dwilsonhaircuts/
 
 1. Go to [Firebase Console](https://console.firebase.google.com/)
 2. Click "Add Project"
-3. Enter project name: `dwilsonhaircuts`
+3. Enter project name: `Open Heaven`
 4. Disable Google Analytics (optional)
 5. Click "Create Project"
 
@@ -52,7 +52,7 @@ dwilsonhaircuts/
 1. In Firebase Console, click the gear icon → "Project settings"
 2. Scroll down to "Your apps"
 3. Click the web icon `</>`
-4. Register your app (name: "Dwilsonhaircuts Website")
+4. Register your app (name: "Open Heaven Website")
 5. Copy the `firebaseConfig` object
 
 ### Step 4: Update Your HTML Files
@@ -216,7 +216,7 @@ Update CSS variables in each HTML file:
 ### Business Information
 Update in footer and contact sections:
 - Phone number: `+234 XXX XXX XXXX`
-- Email: `info@dwilsonhaircuts.com`
+- Email: `info@Open Heaven.com`
 - Address: Update to your actual location
 - Social media links
 
@@ -315,7 +315,7 @@ For technical issues with Firebase:
 
 ## 📄 License
 
-This is a custom-built website for Dwilsonhaircuts. All rights reserved.
+This is a custom-built website for Open Heaven. All rights reserved.
 
 ---
 
