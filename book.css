@@ -55,7 +55,8 @@
         }
         
         .page-hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1599351431613-60b25b3b5271?w=1600') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600') center/cover no-repeat;
+            padding: 120px 0 80px;
             padding: 100px 0 60px;
             color: #fff;
             text-align: center;
