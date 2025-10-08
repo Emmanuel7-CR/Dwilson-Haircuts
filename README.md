@@ -172,11 +172,11 @@ service firebase.storage {
 ### Default Admin Password
 The admin portal (`admin.html`) is protected by a password.
 
-**Default Password:** `dwilson2025`
+**Default Password:** `Open2025`
 
 **To Change:**
 1. Open `admin.html`
-2. Find line: `const ADMIN_PASSWORD = "dwilson2025";`
+2. Find line: `const ADMIN_PASSWORD = "Open2025";`
 3. Change to your desired password
 4. Save the file
 
