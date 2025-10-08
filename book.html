@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your grooming appointment online at Dwilsonhaircuts. Choose from in-shop or home service options.">
+    <title>Book Appointment - Dwilsonhaircuts</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #C9A55B;
+            --secondary-color: #2C2C2C;
+            --accent-color: #1a1a1a;
+            --light-bg: #f8f8f8;
+            --text-dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            padding-top: 76px;
+            background: var(--light-bg);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color) !important;
+            letter-spacing: -1px;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1599351431613-60b25b3b5271?w=1600') center/cover no-repeat;
+            padding: 100px 0 60px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .booking-section {
+            padding: 80px 0;
+        }
+        
+        .booking-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .form-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(201, 165, 91, 0.1);
+        }
+        
+        .service-type-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .service-type-card {
+            border: 3px solid #eee;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .service-type-card:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .service-type-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .service-type-card input[type="radio"]:checked + .service-type-content {
+            color: var(--primary-color);
+        }
+        
+        .service-type-card input[type="radio"]:checked ~ .check-icon {
+            opacity: 1;
+        }
+        
+        .service-type-card.selected {
+            border-color: var(--primary-color);
+            background: #faf8f5;
+        }
+        
+        .service-type-content {
+            transition: color 0.3s ease;
+        }
+        
+        .service-type-content i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .service-type-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .service-type-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+        
+        .check-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .payment-info {
+            background: #f9f9f9;
+            padding: 25px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 25px;
+        }
+        
+        .payment-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .bank-details {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
+        }
+        
+        .bank-details p {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .bank-details strong {
+            color: var(--secondary-color);
+        }
+        
+        .alert-info {
+            background: #e8f4f8;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-check {
+            padding: 15px;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            margin-top: 0;
+        }
+        
+        .form-check-label {
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .btn-submit {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px 50px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-submit:hover:not(:disabled) {
+            background: #b89440;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(201, 165, 91, 0.3);
+        }
+        
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        #paymentSection, #receiptUploadSection {
+            display: none;
+        }
+        
+        footer {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            line-height: 2;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: #b89440;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h3 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .booking-container {
+                padding: 30px 20px;
+            }
+            
+            .service-type-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Dwilson<span>Haircuts</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="book.html">Book Online</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div class="container" data-aos="fade-up">
+            <h1>Book Your Appointment</h1>
+            <p>Schedule your premium grooming experience</p>
+        </div>
+    </header>
+
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container" data-aos="fade-up">
+                
+                <div class="success-message" id="successMessage">
+                    <h3><i class="fas fa-check-circle"></i> Booking Submitted Successfully!</h3>
+                    <p>Thank you for booking with Dwilsonhaircuts. We've received your appointment request and will confirm it shortly. Check your email for details.</p>
+                </div>
+
+                <form id="bookingForm">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="clientName">Full Name *</label>
+                                    <input type="text" class="form-control" id="clientName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="clientEmail">Email Address *</label>
+                                    <input type="email" class="form-control" id="clientEmail" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="clientPhone">Phone Number *</label>
+                            <input type="tel" class="form-control" id="clientPhone" required>
+                        </div>
+                    </div>
+
+                    <!-- Service Selection -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-cut"></i> Service Selection</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="serviceType">Select Service *</label>
+                            <select class="form-select" id="serviceType" required>
+                                <option value="">Choose a service...</option>
+                                <optgroup label="Hair Services">
+                                    <option value="Classic Haircut">Classic Haircut</option>
+                                    <option value="Fade Haircut">Fade Haircut</option>
+                                    <option value="Buzz Cut">Buzz Cut</option>
+                                    <option value="Hair Design/Pattern">Hair Design/Pattern</option>
+                                    <option value="Taper Cut">Taper Cut</option>
+                                    <option value="Kids Haircut">Kids Haircut</option>
+                                    <option value="Textured Crop">Textured Crop</option>
+                                    <option value="Pompadour">Pompadour</option>
+                                </optgroup>
+                                <optgroup label="Dreadlock Specialties">
+                                    <option value="Dreadlock Installation">Dreadlock Installation</option>
+                                    <option value="Dreadlock Maintenance">Dreadlock Maintenance</option>
+                                    <option value="Loc Retwist">Loc Retwist</option>
+                                    <option value="Dreadlock Styling">Dreadlock Styling</option>
+                                    <option value="Loc Repair & Strengthening">Loc Repair & Strengthening</option>
+                                </optgroup>
+                                <optgroup label="Grooming Services">
+                                    <option value="Beard Trim & Shape">Beard Trim & Shape</option>
+                                    <option value="Hot Towel Shave">Hot Towel Shave</option>
+                                    <option value="Facial Treatment">Facial Treatment</option>
+                                    <option value="Eyebrow Grooming">Eyebrow Grooming</option>
+                                </optgroup>
+                                <optgroup label="Styling Services">
+                                    <option value="Hair Coloring">Hair Coloring</option>
+                                    <option value="Hair Texture Treatment">Hair Texture Treatment</option>
+                                    <option value="Styling Products Application">Styling Products Application</option>
+                                    <option value="Special Occasion Styling">Special Occasion Styling</option>
+                                </optgroup>
+                                <optgroup label="Additional Services">
+                                    <option value="Scalp Treatment">Scalp Treatment</option>
+                                    <option value="Hair Consultation">Hair Consultation</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Appointment Details -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Appointment Details</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="appointmentDate">Preferred Date *</label>
+                                    <input type="date" class="form-control" id="appointmentDate" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="appointmentTime">Preferred Time *</label>
+                                    <input type="time" class="form-control" id="appointmentTime" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="additionalNotes">Additional Notes (Optional)</label>
+                            <textarea class="form-control" id="additionalNotes" rows="3" placeholder="Any special requests or information we should know..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Service Location Type -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Service Location</h3>
+                        <div class="service-type-options">
+                            <label class="service-type-card" for="inShop">
+                                <input type="radio" name="locationType" id="inShop" value="in-shop" required>
+                                <div class="service-type-content">
+                                    <i class="fas fa-store"></i>
+                                    <h4>In-Shop Service</h4>
+                                    <p>Visit our location for your service. Payment optional during booking.</p>
+                                </div>
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                            </label>
+                            <label class="service-type-card" for="homeService">
+                                <input type="radio" name="locationType" id="homeService" value="home-service" required>
+                                <div class="service-type-content">
+                                    <i class="fas fa-home"></i>
+                                    <h4>Personal Home Service</h4>
+                                    <p>We come to you. Payment required to confirm booking. (+₦5,000)</p>
+                                </div>
+                                <div class="check-icon"><i class="fas fa-check"></i></div>
+                            </label>
+                        </div>
+
+                        <div id="homeServiceAddress" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label" for="serviceAddress">Service Address *</label>
+                                <textarea class="form-control" id="serviceAddress" rows="2" placeholder="Enter your full address for home service..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="form-section" id="paymentSection">
+                        <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
+                        
+                        <div class="alert-info">
+                            <i class="fas fa-info-circle"></i> <strong>Home Service Payment Required:</strong> To confirm your home service booking, please make a payment and upload your receipt below.
+                        </div>
+
+                        <div class="payment-info">
+                            <h4>Bank Transfer Details</h4>
+                            <p>Please transfer your payment to the account below:</p>
+                            <div class="bank-details">
+                                <p><strong>Bank Name:</strong> <span>First Bank of Nigeria</span></p>
+                                <p><strong>Account Name:</strong> <span>Dwilsonhaircuts Ltd</span></p>
+                                <p><strong>Account Number:</strong> <span>1234567890</span></p>
+                                <p><strong>Reference:</strong> <span>Use your name as reference</span></p>
+                            </div>
+                        </div>
+
+                        <div id="receiptUploadSection">
+                            <div class="form-group">
+                                <label class="form-label" for="paymentReceipt">Upload Payment Receipt *</label>
+                                <input type="file" class="form-control" id="paymentReceipt" accept="image/*,.pdf">
+                                <small class="text-muted">Accepted formats: JPG, PNG, PDF (Max 5MB)</small>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="paymentConfirmation" required>
+                                <label class="form-check-label" for="paymentConfirmation">
+                                    I have made the payment and uploaded the receipt above
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="optionalPayment" style="display: none;">
+                            <div class="alert-info">
+                                <i class="fas fa-info-circle"></i> <strong>Optional:</strong> You can pay now or at the shop. If you'd like to pay in advance, upload your receipt below.
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="payLaterOption">
+                                <label class="form-check-label" for="payLaterOption">
+                                    I will pay later at the shop
+                                </label>
+                            </div>
+                            <div id="optionalReceiptUpload" style="display: none; margin-top: 20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="optionalPaymentReceipt">Upload Payment Receipt (Optional)</label>
+                                    <input type="file" class="form-control" id="optionalPaymentReceipt" accept="image/*,.pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <i class="fas fa-check-circle"></i> Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dwilsonhaircuts</h3>
+                    <p>Premium grooming services with a specialization in dreadlock artistry and maintenance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="book.html">Book Online</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <ul>
+                        <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
+                        <li>Saturday: 9:00 AM - 8:00 PM</li>
+                        <li>Sunday: 10:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +234 XXX XXX XXXX</li>
+                        <li><i class="fas fa-envelope"></i> info@dwilsonhaircuts.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dwilsonhaircuts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-storage-compat.min.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project.firebaseio.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const storage = firebase.storage();
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointmentDate').min = today;
+
+        // Handle service type selection
+        const serviceTypeCards = document.querySelectorAll('.service-type-card');
+        const inShopRadio = document.getElementById('inShop');
+        const homeServiceRadio = document.getElementById('homeService');
+        const paymentSection = document.getElementById('paymentSection');
+        const homeServiceAddress = document.getElementById('homeServiceAddress');
+        const receiptUploadSection = document.getElementById('receiptUploadSection');
+        const optionalPayment = document.getElementById('optionalPayment');
+        const payLaterOption = document.getElementById('payLaterOption');
+        const optionalReceiptUpload = document.getElementById('optionalReceiptUpload');
+        const paymentReceipt = document.getElementById('paymentReceipt');
+        const paymentConfirmation = document.getElementById('paymentConfirmation');
+        const serviceAddress = document.getElementById('serviceAddress');
+
+        serviceTypeCards.forEach(card => {
+            card.addEventListener('click', function() {
+                serviceTypeCards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const radioInput = this.querySelector('input[type="radio"]');
+                if (radioInput.value === 'home-service') {
+                    paymentSection.style.display = 'block';
+                    homeServiceAddress.style.display = 'block';
+                    receiptUploadSection.style.display = 'block';
+                    optionalPayment.style.display = 'none';
+                    serviceAddress.required = true;
+                    paymentReceipt.required = true;
+                } else {
+                    paymentSection.style.display = 'block';
+                    homeServiceAddress.style.display = 'none';
+                    receiptUploadSection.style.display = 'none';
+                    optionalPayment.style.display = 'block';
+                    serviceAddress.required = false;
+                    paymentReceipt.required = false;
+                    paymentConfirmation.required = false;
+                }
+            });
+        });
+
+        // Handle pay later option
+        payLaterOption.addEventListener('change', function() {
+            if (this.checked) {
+                optionalReceiptUpload.style.display = 'none';
+            } else {
+                optionalReceiptUpload.style.display = 'block';
+            }
+        });
+
+        // Form submission
+        const bookingForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        bookingForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate home service payment
+            if (homeServiceRadio.checked) {
+                if (!paymentReceipt.files[0]) {
+                    alert('Please upload your payment receipt for home service booking.');
+                    return;
+                }
+                if (!paymentConfirmation.checked) {
+                    alert('Please confirm that you have made the payment.');
+                    return;
+                }
+            }
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            try {
+                // Prepare booking data
+                const bookingData = {
+                    clientName: document.getElementById('clientName').value,
+                    clientEmail: document.getElementById('clientEmail').value,
+                    clientPhone: document.getElementById('clientPhone').value,
+                    serviceType: document.getElementById('serviceType').value,
+                    appointmentDate: document.getElementById('appointmentDate').value,
+                    appointmentTime: document.getElementById('appointmentTime').value,
+                    additionalNotes: document.getElementById('additionalNotes').value,
+                    locationType: document.querySelector('input[name="locationType"]:checked').value,
+                    serviceAddress: homeServiceRadio.checked ? serviceAddress.value : 'N/A',
+                    paymentStatus: homeServiceRadio.checked ? 'Paid' : (payLaterOption.checked ? 'Pay Later' : 'Paid'),
+                    receiptUploaded: false,
+                    receiptFileName: 'N/A',
+                    timestamp: new Date().toISOString(),
+                    status: 'Pending'
+                };
+
+                // Handle receipt upload
+                let receiptFile = null;
+                if (homeServiceRadio.checked && paymentReceipt.files[0]) {
+                    receiptFile = paymentReceipt.files[0];
+                } else if (inShopRadio.checked && !payLaterOption.checked && document.getElementById('optionalPaymentReceipt').files[0]) {
+                    receiptFile = document.getElementById('optionalPaymentReceipt').files[0];
+                }
+
+                if (receiptFile) {
+                    // Upload to Firebase Storage
+                    const receiptRef = storage.ref(`receipts/${Date.now()}_${receiptFile.name}`);
+                    await receiptRef.put(receiptFile);
+                    const receiptURL = await receiptRef.getDownloadURL();
+                    
+                    bookingData.receiptUploaded = true;
+                    bookingData.receiptFileName = receiptFile.name;
+                    bookingData.receiptURL = receiptURL;
+                }
+
+                // Save to Firebase Database
+                const bookingRef = database.ref('bookings').push();
+                await bookingRef.set(bookingData);
+
+                // Show success message
+                successMessage.style.display = 'block';
+                bookingForm.style.display = 'none';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Booking error:', error);
+                alert('There was an error submitting your booking. Please try again or contact us directly.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Booking';
+            }
+        });
+    </script>
+</body>
+</html>

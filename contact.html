@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Dwilsonhaircuts for bookings, inquiries, and information about our premium grooming services.">
+    <title>Contact Us - Dwilsonhaircuts</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #C9A55B;
+            --secondary-color: #2C2C2C;
+            --accent-color: #1a1a1a;
+            --light-bg: #f8f8f8;
+            --text-dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            padding-top: 76px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color) !important;
+            letter-spacing: -1px;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1600') center/cover no-repeat;
+            padding: 120px 0 80px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .contact-section {
+            padding: 80px 0;
+        }
+        
+        .contact-info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-card {
+            background: #fff;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .info-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .info-card p {
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        .info-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .contact-form-wrapper {
+            background: #fff;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form-wrapper h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(201, 165, 91, 0.1);
+        }
+        
+        .btn-submit {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            background: #b89440;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(201, 165, 91, 0.3);
+        }
+        
+        .contact-details {
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 50px;
+        }
+        
+        .contact-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .detail-item i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+        
+        .detail-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .detail-content p {
+            color: #ccc;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #b89440;
+            transform: translateY(-3px);
+        }
+        
+        .map-section {
+            background: var(--light-bg);
+            padding: 80px 0;
+        }
+        
+        .map-container {
+            height: 450px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        footer {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            line-height: 2;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: #b89440;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 968px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form-wrapper, .contact-details {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Dwilson<span>Haircuts</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="book.html">Book Online</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div class="container" data-aos="fade-up">
+            <h1>Get In Touch</h1>
+            <p>We're here to answer your questions and schedule your appointment</p>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-info-cards">
+                <article class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+234XXXXXXXXXX">+234 XXX XXX XXXX</a></p>
+                    <p style="margin-top: 10px;">Monday - Sunday<br>9:00 AM - 8:00 PM</p>
+                </article>
+
+                <article class="info-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@dwilsonhaircuts.com">info@dwilsonhaircuts.com</a></p>
+                    <p style="margin-top: 10px;">We'll respond within 24 hours</p>
+                </article>
+
+                <article class="info-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>123 Grooming Street<br>Lagos, Nigeria</p>
+                    <p style="margin-top: 10px;"><a href="#map">View on Map</a></p>
+                </article>
+
+                <article class="info-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/234XXXXXXXXXX">Chat with Us</a></p>
+                    <p style="margin-top: 10px;">Quick responses guaranteed</p>
+                </article>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form-wrapper" data-aos="fade-right">
+                    <h2>Send Us a Message</h2>
+                    
+                    <div class="success-message" id="successMessage">
+                        <strong>Success!</strong> Your message has been sent. We'll get back to you soon.
+                    </div>
+
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name *</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <select class="form-select" id="subject" required>
+                                <option value="">Select a subject...</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Booking Question">Booking Question</option>
+                                <option value="Product Inquiry">Product Inquiry</option>
+                                <option value="Dreadlock Services">Dreadlock Services</option>
+                                <option value="Group Booking">Group Booking</option>
+                                <option value="Feedback">Feedback</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message *</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-details" data-aos="fade-left">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="detail-content">
+                            <h3>Our Location</h3>
+                            <p>123 Grooming Street, Victoria Island<br>Lagos, Nigeria</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="detail-content">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 7:00 PM<br>
+                            Saturday: 9:00 AM - 8:00 PM<br>
+                            Sunday: 10:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="detail-content">
+                            <h3>Phone</h3>
+                            <p>Main: +234 XXX XXX XXXX<br>
+                            WhatsApp: +234 XXX XXX XXXX</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="detail-content">
+                            <h3>Email</h3>
+                            <p>General: info@dwilsonhaircuts.com<br>
+                            Bookings: book@dwilsonhaircuts.com</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-share-alt"></i>
+                        <div class="detail-content">
+                            <h3>Follow Us</h3>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section" id="map">
+        <div class="container">
+            <div data-aos="fade-up">
+                <div class="map-container">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                        <h3>Interactive Map</h3>
+                        <p>Replace this section with Google Maps embed code</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">
+                            Example: &lt;iframe src="https://www.google.com/maps/embed?..." width="100%" height="450"&gt;&lt;/iframe&gt;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dwilsonhaircuts</h3>
+                    <p>Premium grooming services with a specialization in dreadlock artistry and maintenance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="book.html">Book Online</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <ul>
+                        <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
+                        <li>Saturday: 9:00 AM - 8:00 PM</li>
+                        <li>Sunday: 10:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +234 XXX XXX XXXX</li>
+                        <li><i class="fas fa-envelope"></i> info@dwilsonhaircuts.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dwilsonhaircuts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database-compat.min.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Firebase Configuration (same as booking page)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project.firebaseio.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('.btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            try {
+                const contactData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value,
+                    timestamp: new Date().toISOString(),
+                    status: 'Unread'
+                };
+
+                // Save to Firebase
+                await database.ref('contacts').push(contactData);
+
+                // Show success message
+                successMessage.style.display = 'block';
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again or contact us directly.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            }
+        });
+    </script>
+</body>
+</html>

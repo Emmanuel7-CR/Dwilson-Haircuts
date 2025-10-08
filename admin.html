@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Portal - Dwilsonhaircuts</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #C9A55B;
+            --secondary-color: #2C2C2C;
+            --accent-color: #1a1a1a;
+            --light-bg: #f8f8f8;
+            --text-dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background: var(--light-bg);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Login Screen */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+        }
+        
+        .login-box {
+            background: #fff;
+            padding: 50px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-logo h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .login-logo span {
+            color: var(--primary-color);
+        }
+        
+        .login-logo p {
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 0;
+            margin-bottom: 20px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .btn-login {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            background: #b89440;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #f5c6cb;
+            display: none;
+        }
+        
+        /* Dashboard */
+        #dashboard {
+            display: none;
+        }
+        
+        .dashboard-header {
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .dashboard-header span {
+            color: var(--primary-color);
+        }
+        
+        .btn-logout {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 25px;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-logout:hover {
+            background: #b89440;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs-custom {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 0;
+        }
+        
+        .tab-btn {
+            background: #fff;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-content-section {
+            display: none;
+        }
+        
+        .tab-content-section.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            color: #666;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #fff;
+            border: 2px solid #eee;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+        
+        .bookings-container {
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .booking-card {
+            border: 2px solid #eee;
+            padding: 25px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .booking-card.pending {
+            border-left: 5px solid #ffc107;
+        }
+        
+        .booking-card.confirmed {
+            border-left: 5px solid #28a745;
+        }
+        
+        .booking-card.completed {
+            border-left: 5px solid #6c757d;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        
+        .booking-id {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .booking-name {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+        
+        .status-badge {
+            padding: 8px 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-badge.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-badge.completed {
+            background: #d6d8db;
+            color: #383d41;
+        }
+        
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+        
+        .detail-item i {
+            color: var(--primary-color);
+            margin-top: 3px;
+        }
+        
+        .detail-item strong {
+            display: block;
+            color: var(--secondary-color);
+            margin-bottom: 3px;
+        }
+        
+        .payment-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .payment-status {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .payment-status.paid {
+            color: #28a745;
+        }
+        
+        .payment-status.pending {
+            color: #ffc107;
+        }
+        
+        .receipt-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .receipt-link:hover {
+            text-decoration: underline;
+        }
+        
+        .booking-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            padding: 10px 20px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-confirm {
+            background: #28a745;
+            color: #fff;
+        }
+        
+        .btn-confirm:hover {
+            background: #218838;
+        }
+        
+        .btn-complete {
+            background: #6c757d;
+            color: #fff;
+        }
+        
+        .btn-complete:hover {
+            background: #5a6268;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: #fff;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        
+        .btn-edit {
+            background: #007bff;
+            color: #fff;
+        }
+        
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+        
+        .btn-add {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add:hover {
+            background: #b89440;
+        }
+        
+        .no-bookings {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .no-bookings i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .contacts-section {
+            margin-top: 60px;
+        }
+        
+        .contact-card {
+            background: #fff;
+            border: 2px solid #eee;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card.unread {
+            border-left: 5px solid var(--primary-color);
+            background: #fffef8;
+        }
+        
+        /* Services Management */
+        .service-category-manage {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .category-header-manage {
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .service-item-manage {
+            border: 2px solid #eee;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .service-info {
+            flex: 1;
+        }
+        
+        .service-info h4 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .service-price-display {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        /* Products Management */
+        .products-grid-manage {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card-manage {
+            background: #fff;
+            border: 2px solid #eee;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-image-manage {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-content-manage {
+            padding: 20px;
+        }
+        
+        .product-content-manage h4 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .product-content-manage p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--secondary-color);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .btn-save {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn-save:hover {
+            background: #b89440;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .booking-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-item-manage {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .products-grid-manage {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>Dwilson<span>Haircuts</span></h1>
+                <p>Admin Portal</p>
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                Invalid password. Please try again.
+            </div>
+            
+            <form id="loginForm">
+                <input type="password" class="form-control" id="adminPassword" placeholder="Enter Admin Password" required>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-lock"></i> Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <header class="dashboard-header">
+            <div class="container">
+                <h1>Dwilson<span>Haircuts</span> Dashboard</h1>
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </header>
+
+        <main class="container pb-5">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3 id="totalBookings">0</h3>
+                    <p>Total Bookings</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="pendingBookings">0</h3>
+                    <p>Pending</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-cut"></i>
+                    <h3 id="totalServices">0</h3>
+                    <p>Services</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-box"></i>
+                    <h3 id="totalProducts">0</h3>
+                    <p>Products</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs-custom">
+                <button class="tab-btn active" onclick="switchTab('bookings')">
+                    <i class="fas fa-calendar"></i> Bookings
+                </button>
+                <button class="tab-btn" onclick="switchTab('services')">
+                    <i class="fas fa-cut"></i> Services
+                </button>
+                <button class="tab-btn" onclick="switchTab('products')">
+                    <i class="fas fa-box"></i> Products
+                </button>
+                <button class="tab-btn" onclick="switchTab('contacts')">
+                    <i class="fas fa-envelope"></i> Messages
+                </button>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div id="bookingsTab" class="tab-content-section active">
+                <h2 class="section-title">Appointment Bookings</h2>
+                
+                <div class="filter-tabs">
+                    <button class="filter-btn active" onclick="filterBookings('all')">All</button>
+                    <button class="filter-btn" onclick="filterBookings('pending')">Pending</button>
+                    <button class="filter-btn" onclick="filterBookings('confirmed')">Confirmed</button>
+                    <button class="filter-btn" onclick="filterBookings('completed')">Completed</button>
+                </div>
+
+                <div class="bookings-container">
+                    <div id="bookingsList"></div>
+                </div>
+            </div>
+
+            <!-- Services Tab -->
+            <div id="servicesTab" class="tab-content-section">
+                <h2 class="section-title">Manage Services</h2>
+                <button class="btn-add" onclick="openAddServiceModal()">
+                    <i class="fas fa-plus"></i> Add New Service
+                </button>
+                <div id="servicesList"></div>
+            </div>
+
+            <!-- Products Tab -->
+            <div id="productsTab" class="tab-content-section">
+                <h2 class="section-title">Manage Products</h2>
+                <button class="btn-add" onclick="openAddProductModal()">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+                <div id="productsList" class="products-grid-manage"></div>
+            </div>
+
+            <!-- Contacts Tab -->
+            <div id="contactsTab" class="tab-content-section">
+                <h2 class="section-title">Contact Messages</h2>
+                <div id="contactsList"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Service Edit Modal -->
+    <div id="serviceModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeServiceModal()">&times;</button>
+            <h3 class="modal-title" id="serviceModalTitle">Edit Service</h3>
+            <form id="serviceForm">
+                <input type="hidden" id="serviceId">
+                <input type="hidden" id="serviceCategory">
+                
+                <div class="form-group">
+                    <label class="form-label">Service Name</label>
+                    <input type="text" class="form-input" id="serviceName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="serviceDescription" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Price (₦)</label>
+                    <input type="number" class="form-input" id="servicePrice" required min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-input" id="serviceCategorySelect" required>
+                        <option value="Hair Services">Hair Services</option>
+                        <option value="Dreadlock Specialties">Dreadlock Specialties</option>
+                        <option value="Grooming Services">Grooming Services</option>
+                        <option value="Styling Services">Styling Services</option>
+                        <option value="Additional Services">Additional Services</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Edit Modal -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <h3 class="modal-title" id="productModalTitle">Edit Product</h3>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                
+                <div class="form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" class="form-input" id="productName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="productDescription" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Image URL</label>
+                    <input type="url" class="form-input" id="productImage" required placeholder="https://images.unsplash.com/...">
+                    <small style="color: #666; display: block; margin-top: 5px;">Use Unsplash, Pexels, or Pixabay image URLs</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Badge (Optional)</label>
+                    <select class="form-input" id="productBadge">
+                        <option value="">None</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Best Seller">Best Seller</option>
+                        <option value="Professional">Professional</option>
+                        <option value="Specialty">Specialty</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Essential">Essential</option>
+                        <option value="New">New</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Features (one per line)</label>
+                    <textarea class="form-textarea" id="productFeatures" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-storage-compat.min.js"></script>
+    
+    <script>
+        // Admin password (CHANGE THIS!)
+        const ADMIN_PASSWORD = "dwilson2025";
+        
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project.firebaseio.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        let allBookings = [];
+        let allContacts = [];
+        let allServices = [];
+        let allProducts = [];
+        let currentFilter = 'all';
+        let currentTab = 'bookings';
+
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadDashboardData();
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+            }
+        });
+
+        function logout() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.tab-btn').classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.tab-content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(tab + 'Tab').classList.add('active');
+        }
+
+        // Load dashboard data
+        function loadDashboardData() {
+            // Load bookings
+            database.ref('bookings').on('value', (snapshot) => {
+                allBookings = [];
+                snapshot.forEach((childSnapshot) => {
+                    const booking = childSnapshot.val();
+                    booking.id = childSnapshot.key;
+                    allBookings.push(booking);
+                });
+                updateStats();
+                displayBookings();
+            });
+
+            // Load contacts
+            database.ref('contacts').on('value', (snapshot) => {
+                allContacts = [];
+                snapshot.forEach((childSnapshot) => {
+                    const contact = childSnapshot.val();
+                    contact.id = childSnapshot.key;
+                    allContacts.push(contact);
+                });
+                updateStats();
+                displayContacts();
+            });
+
+            // Load services
+            database.ref('services').on('value', (snapshot) => {
+                allServices = [];
+                snapshot.forEach((childSnapshot) => {
+                    const service = childSnapshot.val();
+                    service.id = childSnapshot.key;
+                    allServices.push(service);
+                });
+                updateStats();
+                displayServices();
+            });
+
+            // Load products
+            database.ref('products').on('value', (snapshot) => {
+                allProducts = [];
+                snapshot.forEach((childSnapshot) => {
+                    const product = childSnapshot.val();
+                    product.id = childSnapshot.key;
+                    allProducts.push(product);
+                });
+                updateStats();
+                displayProducts();
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalBookings').textContent = allBookings.length;
+            document.getElementById('pendingBookings').textContent = 
+                allBookings.filter(b => b.status === 'Pending').length;
+            document.getElementById('totalServices').textContent = allServices.length;
+            document.getElementById('totalProducts').textContent = allProducts.length;
+        }
+
+        // BOOKINGS MANAGEMENT
+        function filterBookings(status) {
+            currentFilter = status;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            displayBookings();
+        }
+
+        function displayBookings() {
+            const bookingsList = document.getElementById('bookingsList');
+            
+            let filteredBookings = allBookings;
+            if (currentFilter !== 'all') {
+                filteredBookings = allBookings.filter(b => 
+                    b.status.toLowerCase() === currentFilter
+                );
+            }
+            
+            filteredBookings.sort((a, b) => 
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+            
+            if (filteredBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-calendar-times"></i>
+                        <h3>No Bookings Found</h3>
+                        <p>No bookings match the current filter.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            bookingsList.innerHTML = filteredBookings.map(booking => `
+                <div class="booking-card ${booking.status.toLowerCase()}">
+                    <div class="booking-header">
+                        <div>
+                            <div class="booking-id">ID: ${booking.id.substring(0, 8)}</div>
+                            <div class="booking-name">${booking.clientName}</div>
+                        </div>
+                        <span class="status-badge ${booking.status.toLowerCase()}">
+                            ${booking.status}
+                        </span>
+                    </div>
+                    
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <i class="fas fa-cut"></i>
+                            <div>
+                                <strong>Service</strong>
+                                ${booking.serviceType}
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <div>
+                                <strong>Date & Time</strong>
+                                ${booking.appointmentDate} at ${booking.appointmentTime}
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                ${booking.clientPhone}
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                ${booking.clientEmail}
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location Type</strong>
+                                ${booking.locationType === 'home-service' ? 'Home Service' : 'In-Shop'}
+                            </div>
+                        </div>
+                        ${booking.locationType === 'home-service' ? `
+                        <div class="detail-item">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <strong>Service Address</strong>
+                                ${booking.serviceAddress}
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    ${booking.additionalNotes ? `
+                    <div class="detail-item mb-3">
+                        <i class="fas fa-sticky-note"></i>
+                        <div>
+                            <strong>Additional Notes</strong>
+                            ${booking.additionalNotes}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="payment-info">
+                        <div class="payment-status ${booking.paymentStatus === 'Paid' ? 'paid' : 'pending'}">
+                            <i class="fas fa-${booking.paymentStatus === 'Paid' ? 'check-circle' : 'clock'}"></i>
+                            Payment Status: ${booking.paymentStatus}
+                        </div>
+                        ${booking.receiptUploaded ? `
+                        <div>
+                            <i class="fas fa-file-invoice"></i> 
+                            <strong>Receipt:</strong> 
+                            <a href="${booking.receiptURL || '#'}" target="_blank" class="receipt-link">
+                                View Receipt (${booking.receiptFileName})
+                            </a>
+                        </div>
+                        ` : '<div><i class="fas fa-times-circle"></i> No receipt uploaded</div>'}
+                    </div>
+                    
+                    <div class="booking-actions">
+                        ${booking.status === 'Pending' ? `
+                            <button class="btn-action btn-confirm" onclick="updateBookingStatus('${booking.id}', 'Confirmed')">
+                                <i class="fas fa-check"></i> Confirm
+                            </button>
+                        ` : ''}
+                        ${booking.status === 'Confirmed' ? `
+                            <button class="btn-action btn-complete" onclick="updateBookingStatus('${booking.id}', 'Completed')">
+                                <i class="fas fa-check-double"></i> Complete
+                            </button>
+                        ` : ''}
+                        <button class="btn-action btn-delete" onclick="deleteBooking('${booking.id}')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 15px; font-size: 0.85rem; color: #999;">
+                        <i class="fas fa-clock"></i> Booked: ${new Date(booking.timestamp).toLocaleString()}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateBookingStatus(bookingId, newStatus) {
+            if (confirm(`Mark this booking as ${newStatus}?`)) {
+                database.ref(`bookings/${bookingId}`).update({ status: newStatus })
+                    .then(() => alert(`Booking status updated to ${newStatus}`))
+                    .catch((error) => alert('Error: ' + error.message));
+            }
+        }
+
+        function deleteBooking(bookingId) {
+            if (confirm('Delete this booking? This cannot be undone.')) {
+                database.ref(`bookings/${bookingId}`).remove()
+                    .then(() => alert('Booking deleted'))
+                    .catch((error) => alert('Error: ' + error.message));
+            }
+        }
+
+        // SERVICES MANAGEMENT
+        function displayServices() {
+            const servicesList = document.getElementById('servicesList');
+            
+            if (allServices.length === 0) {
+                servicesList.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-cut"></i>
+                        <h3>No Services Yet</h3>
+                        <p>Add your first service to get started.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group services by category
+            const categories = {};
+            allServices.forEach(service => {
+                if (!categories[service.category]) {
+                    categories[service.category] = [];
+                }
+                categories[service.category].push(service);
+            });
+
+            servicesList.innerHTML = Object.keys(categories).map(category => `
+                <div class="service-category-manage">
+                    <div class="category-header-manage">
+                        <h3>${category}</h3>
+                        <span>${categories[category].length} services</span>
+                    </div>
+                    ${categories[category].map(service => `
+                        <div class="service-item-manage">
+                            <div class="service-info">
+                                <h4>${service.name}</h4>
+                                <p>${service.description}</p>
+                                <div class="service-price-display">₦${service.price.toLocaleString()}</div>
+                            </div>
+                            <div class="booking-actions">
+                                <button class="btn-action btn-edit" onclick='editService(${JSON.stringify(service).replace(/'/g, "&apos;")})'>
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn-action btn-delete" onclick="deleteService('${service.id}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        function openAddServiceModal() {
+            document.getElementById('serviceModalTitle').textContent = 'Add New Service';
+            document.getElementById('serviceForm').reset();
+            document.getElementById('serviceId').value = '';
+            document.getElementById('serviceModal').classList.add('active');
+        }
+
+        function editService(service) {
+            document.getElementById('serviceModalTitle').textContent = 'Edit Service';
+            document.getElementById('serviceId').value = service.id;
+            document.getElementById('serviceName').value = service.name;
+            document.getElementById('serviceDescription').value = service.description;
+            document.getElementById('servicePrice').value = service.price;
+            document.getElementById('serviceCategorySelect').value = service.category;
+            document.getElementById('serviceModal').classList.add('active');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.remove('active');
+        }
+
+        document.getElementById('serviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const serviceId = document.getElementById('serviceId').value;
+            const serviceData = {
+                name: document.getElementById('serviceName').value,
+                description: document.getElementById('serviceDescription').value,
+                price: parseFloat(document.getElementById('servicePrice').value),
+                category: document.getElementById('serviceCategorySelect').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (serviceId) {
+                // Update existing service
+                database.ref(`services/${serviceId}`).update(serviceData)
+                    .then(() => {
+                        alert('Service updated successfully!');
+                        closeServiceModal();
+                    })
+                    .catch(error => alert('Error: ' + error.message));
+            } else {
+                // Add new service
+                serviceData.createdAt = new Date().toISOString();
+                database.ref('services').push(serviceData)
+                    .then(() => {
+                        alert('Service added successfully!');
+                        closeServiceModal();
+                    })
+                    .catch(error => alert('Error: ' + error.message));
+            }
+        });
+
+        function deleteService(serviceId) {
+            if (confirm('Delete this service? This cannot be undone.')) {
+                database.ref(`services/${serviceId}`).remove()
+                    .then(() => alert('Service deleted'))
+                    .catch(error => alert('Error: ' + error.message));
+            }
+        }
+
+        // PRODUCTS MANAGEMENT
+        function displayProducts() {
+            const productsList = document.getElementById('productsList');
+            
+            if (allProducts.length === 0) {
+                productsList.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-box"></i>
+                        <h3>No Products Yet</h3>
+                        <p>Add your first product to get started.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productsList.innerHTML = allProducts.map(product => `
+                <div class="product-card-manage">
+                    <div class="product-image-manage" style="background-image: url('${product.image}')"></div>
+                    <div class="product-content-manage">
+                        ${product.badge ? `<span class="status-badge pending">${product.badge}</span>` : ''}
+                        <h4>${product.name}</h4>
+                        <p>${product.description}</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: 15px;">
+                            ${product.features.map(f => `<li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 8px;"></i>${f}</li>`).join('')}
+                        </ul>
+                        <div class="booking-actions">
+                            <button class="btn-action btn-edit" onclick='editProduct(${JSON.stringify(product).replace(/'/g, "&apos;")})'>
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-action btn-delete" onclick="deleteProduct('${product.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddProductModal() {
+            document.getElementById('productModalTitle').textContent = 'Add New Product';
+            document.getElementById('productForm').reset();
+            document.getElementById('productId').value = '';
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function editProduct(product) {
+            document.getElementById('productModalTitle').textContent = 'Edit Product';
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productImage').value = product.image;
+            document.getElementById('productBadge').value = product.badge || '';
+            document.getElementById('productFeatures').value = product.features.join('\n');
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const productId = document.getElementById('productId').value;
+            const featuresText = document.getElementById('productFeatures').value;
+            const featuresArray = featuresText.split('\n').filter(f => f.trim() !== '');
+            
+            const productData = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value,
+                image: document.getElementById('productImage').value,
+                badge: document.getElementById('productBadge').value,
+                features: featuresArray,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (productId) {
+                // Update existing product
+                database.ref(`products/${productId}`).update(productData)
+                    .then(() => {
+                        alert('Product updated successfully!');
+                        closeProductModal();
+                    })
+                    .catch(error => alert('Error: ' + error.message));
+            } else {
+                // Add new product
+                productData.createdAt = new Date().toISOString();
+                database.ref('products').push(productData)
+                    .then(() => {
+                        alert('Product added successfully!');
+                        closeProductModal();
+                    })
+                    .catch(error => alert('Error: ' + error.message));
+            }
+        });
+
+        function deleteProduct(productId) {
+            if (confirm('Delete this product? This cannot be undone.')) {
+                database.ref(`products/${productId}`).remove()
+                    .then(() => alert('Product deleted'))
+                    .catch(error => alert('Error: ' + error.message));
+            }
+        }
+
+        // CONTACTS MANAGEMENT
+        function displayContacts() {
+            const contactsList = document.getElementById('contactsList');
+            
+            if (allContacts.length === 0) {
+                contactsList.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-envelope-open"></i>
+                        <h3>No Contact Messages</h3>
+                        <p>No messages received yet.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            allContacts.sort((a, b) => 
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+            
+            contactsList.innerHTML = allContacts.map(contact => `
+                <div class="contact-card ${contact.status === 'Unread' ? 'unread' : ''}">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h4 style="margin-bottom: 5px;">${contact.name}</h4>
+                            <div style="color: #666; font-size: 0.9rem;">
+                                <i class="fas fa-envelope"></i> ${contact.email}
+                                ${contact.phone ? `<span style="margin-left: 15px;"><i class="fas fa-phone"></i> ${contact.phone}</span>` : ''}
+                            </div>
+                        </div>
+                        ${contact.status === 'Unread' ? `
+                            <span class="status-badge pending">New</span>
+                        ` : ''}
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: var(--primary-color);">Subject:</strong> ${contact.subject}
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--primary-color);">
+                        ${contact.message}
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div style="font-size: 0.85rem; color: #999;">
+                            <i class="fas fa-clock"></i> ${new Date(contact.timestamp).toLocaleString()}
+                        </div>
+                        <div>
+                            ${contact.status === 'Unread' ? `
+                                <button class="btn-action btn-confirm" onclick="markContactAsRead('${contact.id}')">
+                                    <i class="fas fa-check"></i> Mark as Read
+                                </button>
+                            ` : ''}
+                            <button class="btn-action btn-delete" onclick="deleteContact('${contact.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function markContactAsRead(contactId) {
+            database.ref(`contacts/${contactId}`).update({ status: 'Read' })
+                .then(() => alert('Message marked as read'))
+                .catch(error => alert('Error: ' + error.message));
+        }
+
+        function deleteContact(contactId) {
+            if (confirm('Delete this message?')) {
+                database.ref(`contacts/${contactId}`).remove()
+                    .then(() => alert('Message deleted'))
+                    .catch(error => alert('Error: ' + error.message));
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
