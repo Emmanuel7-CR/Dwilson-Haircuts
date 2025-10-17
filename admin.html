@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Admin Portal - Open Heaven</title>
+    <title>Admin Portal - Dwilson Haircuts</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <div id="loginScreen" class="login-container">
         <div class="login-box">
             <div class="login-logo">
-                <h1>Open<span>Heaven</span></h1>
+                <h1>Dwilson<span>Haircuts</span></h1>
                 <p>Admin Portal</p>
             </div>
             
@@ -39,7 +39,7 @@
     <div id="dashboard">
         <header class="dashboard-header">
             <div class="container">
-                <h1>Open<span>Heaven</span> Dashboard</h1>
+                <h1>Dwilson<span>Haircuts</span> Dashboard</h1>
                 <button class="btn-logout" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
@@ -106,7 +106,7 @@
             <!-- Services Tab -->
             <div id="servicesTab" class="tab-content-section">
                 <h2 class="section-title">Manage Services</h2>
-                <button class="btn-add" onclick="openAddServiceModal()">
+                <button class="btn-add" onclick="DwilsonAddServiceModal()">
                     <i class="fas fa-plus"></i> Add New Service
                 </button>
                 <div id="servicesList"></div>
@@ -115,7 +115,7 @@
             <!-- Products Tab -->
             <div id="productsTab" class="tab-content-section">
                 <h2 class="section-title">Manage Products</h2>
-                <button class="btn-add" onclick="openAddProductModal()">
+                <button class="btn-add" onclick="DwilsonAddProductModal()">
                     <i class="fas fa-plus"></i> Add New Product
                 </button>
                 <div id="productsList" class="products-grid-manage"></div>
@@ -230,7 +230,7 @@
     
     <script>
         // Admin password (CHANGE THIS!)
-        const ADMIN_PASSWORD = "openheaven2025";
+        const ADMIN_PASSWORD = "Dwilson2025";
         
         // Firebase Configuration
         const firebaseConfig = {
@@ -561,7 +561,7 @@
             `).join('');
         }
 
-        function openAddServiceModal() {
+        function DwilsonAddServiceModal() {
             document.getElementById('serviceModalTitle').textContent = 'Add New Service';
             document.getElementById('serviceForm').reset();
             document.getElementById('serviceId').value = '';
@@ -660,7 +660,7 @@
             `).join('');
         }
 
-        function openAddProductModal() {
+        function DwilsonAddProductModal() {
             document.getElementById('productModalTitle').textContent = 'Add New Product';
             document.getElementById('productForm').reset();
             document.getElementById('productId').value = '';
@@ -733,7 +733,7 @@
             if (allContacts.length === 0) {
                 contactsList.innerHTML = `
                     <div class="no-bookings">
-                        <i class="fas fa-envelope-open"></i>
+                        <i class="fas fa-envelope-Dwilson"></i>
                         <h3>No Contact Messages</h3>
                         <p>No messages received yet.</p>
                     </div>
