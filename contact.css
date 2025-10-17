@@ -376,3 +376,18 @@
     padding-bottom: 1rem;
   }
 }
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem; /* Slightly smaller on mobile */
+  }
+
+  .navbar-toggler {
+    margin-right: -12px; /* Pull back if needed */
+  }
+}
